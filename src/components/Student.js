@@ -7,18 +7,22 @@ class Student extends Component{
     handleSubmit=(e)=>{
         e.preventDefault()
 
+        let dob =new Date(this.state.dob)
+        let currDate=new Date();
+        console.log(currDate.getFullYear()-dob.getFullYear())
+        this.setState({
+            age:currDate.getFullYear()-dob.getFullYear()
+        })
+    setTimeout(()=>{
         this.props.addPost(this.state)
         this.props.history.push('/')
+    },1000)
+        
+        
     }
     handleChange=(e)=>{
-        if(e.target.id==='address'){
-            let dob =new Date(this.state.dob)
-            let currDate=new Date();
-            console.log(currDate.getFullYear()-dob.getFullYear())
-            this.setState({
-                age:currDate.getFullYear()-dob.getFullYear()
-            })
-        }
+       
+        
         this.setState({
             [e.target.id]:e.target.value
         })
